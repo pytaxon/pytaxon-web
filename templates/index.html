@@ -9,14 +9,12 @@
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </head>
 <body>
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-        <div
-            id="drop_zone"
-            ondrop="dropHandler(event);"
-            ondragover="dragOverHandler(event);">
+    <form action="/process" method="POST" enctype="multipart/form-data">
+        <div id="drop_zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
             <input type="file" name="file">
         </div>
-        <input type="submit" value="Enviar">
+        <button type="submit" formaction="/normalize_taxonomies">Normalize Taxonomies</button>
+        <button type="submit" formaction="/normalize_lineage">Normalize Lineage</button>
     </form>
 </body>
 </html>
