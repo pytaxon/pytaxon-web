@@ -100,9 +100,10 @@ class Pytaxon:
             'Alternative2': Alternatives2
             })
 
-        print(self._df_to_correct)
+        # print(self._df_to_correct)
         try:
-            self._df_to_correct.to_excel(f'{self._spreadsheet[:-4]}_por_corrigir.xlsx')
+            self._normalized_df_name = f'{self._spreadsheet[:-4]}_por_corrigir.xlsx'
+            self._df_to_correct.to_excel(self._normalized_df_name)
         except Exception as e:
             print('Error creating corrected spreadsheet: ', e)
 
