@@ -1,6 +1,6 @@
 import os
 from flask import Flask, request, render_template, send_file, session
-from pytaxon import Pytaxon
+from resources.pytaxon import Pytaxon
 
 app = Flask(__name__)
 app.secret_key = 'Iza minha futura noiva'
