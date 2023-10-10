@@ -1,0 +1,27 @@
+{
+  "css.validate": false,
+  "liveServer.settings.port": 5501,
+  "tailwindCSS.emmetCompletions": true,
+  "tailwindCSS.includeLanguages": {
+    "plaintext": "html",
+    "javascript":"javascript"  
+  },
+  "editor.quickSuggestions": {
+      "other": true,
+      "comments": true,
+      "strings": true
+  },
+  "tailwindCSS.classAttributes": [
+      "class",
+      "className",
+      "ngClass"
+  ],
+  "editor.inlineSuggest.enabled": true,
+  "tailwindCSS.experimental.classRegex": [":(?:.|\n)*?[\"'`]([^\"'`]*).*?,"],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "python.analysis.extraPaths": [
+    "./src/resources"
+  ],
+}
