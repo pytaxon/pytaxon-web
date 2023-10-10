@@ -1,29 +1,40 @@
-function dropHandler(ev) {
-    console.log("File(s) dropped");
-  
-    // Prevent default behavior (Prevent file from being opened)
-    ev.preventDefault();
-  
-    if (ev.dataTransfer.items) {
-      // Use DataTransferItemList interface to access the file(s)
-      [...ev.dataTransfer.items].forEach((item, i) => {
-        // If dropped items aren't files, reject them
-        if (item.kind === "file") {
-          const file = item.getAsFile();
-          console.log(`… file[${i}].name = ${file.name}`);
-        }
-      });
-    } else {
-      // Use DataTransfer interface to access the file(s)
-      [...ev.dataTransfer.files].forEach((file, i) => {
-        console.log(`… file[${i}].name = ${file.name}`);
-      });
-    }
-  }
-  
-function dragOverHandler(ev) {
-  console.log("File(s) in drop zone");
+const dropArea = document.getElementById('drop-area');
+        const fileInput = document.getElementById('file-input');
 
-  // Prevent default behavior (Prevent file from being opened)
-  ev.preventDefault();
-}
+        // Adicione um ouvinte de evento para o evento "dragover" para evitar que o navegador abra o arquivo diretamente.
+        function handleDragOver(e) {
+            e.preventDefault();
+            dropArea.style.backgroundColor = '#f2f2f2';
+        }
+
+        dropArea.addEventListener('dragover', handleDragOver);
+        fileInput.addEventListener('dragover', handleDragOver);
+
+        // Ouvinte de evento para reverter a cor de fundo quando o usuário sair da área de drop.
+        function handleDragLeave() {
+            dropArea.style.backgroundColor = '#ffffff';
+        }
+
+        dropArea.addEventListener('dragleave', handleDragLeave);
+        fileInput.addEventListener('dragleave', handleDragLeave);
+
+        // Ouvinte de evento para processar os arquivos quando o usuário soltar na área de drop.
+        dropArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropArea.style.backgroundColor = '#ffffff';
+            const files = e.dataTransfer.files;
+            // Faça o que você quiser com os arquivos aqui, por exemplo, envie-os para o servidor.
+            console.log(files);
+        });
+
+        // Ouvinte de evento para abrir o seletor de arquivos quando o usuário clica na área de drop.
+        dropArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        // Ouvinte de evento para capturar o arquivo selecionado no seletor de arquivos.
+        fileInput.addEventListener('change', () => {
+            const files = fileInput.files;
+            // Faça o que você quiser com os arquivos aqui.
+            console.log(files);
+        });

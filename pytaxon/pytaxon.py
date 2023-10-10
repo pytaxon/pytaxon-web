@@ -2,10 +2,12 @@ import pandas as pd
 import requests
 from collections import defaultdict
 from pprint import pprint
+import os
 
 class Pytaxon:
     def __init__(self):
-        self._spreadsheet:str = None
+        self._path_to_original_spreadsheet:str = None
+        self._name_original_spreadsheet:str = None
         self._original_df:pd.DataFrame = None
         self._genus_column:str = None
         self._species_column:str = None
@@ -13,15 +15,18 @@ class Pytaxon:
         self._json_post:dict = None
         self._matched_names:dict = None
         self._incorrect_taxon_data:defaultdict = defaultdict(list)
+        self._checked_df_name:dict = None
         self._df_to_correct:pd.DataFrame = None
         self._corrected_df = None
         self._lineage_dict = dict
         self._incorrect_lineage_data:defaultdict = defaultdict(list)
 
     def read_spreadshet(self, spreadsheet:str) -> None:
-        self._spreadsheet = spreadsheet.replace('"', '')
+        self._path_to_original_spreadsheet = spreadsheet.replace('"', '')
+        self._name_original_spreadsheet, extension = os.path.splitext(os.path.basename(self._path_to_original_spreadsheet))
+
         try:
-            self._original_df = pd.read_excel(self._spreadsheet).reset_index()
+            self._original_df = pd.read_excel(self._path_to_original_spreadsheet).reset_index()
             print('Success reading the spreadsheet, now entering columns names...')
         except Exception as e:
             print('Error reading the spreadsheet: ', e)  
@@ -96,14 +101,14 @@ class Pytaxon:
             'Error Line': list(map(sum2, self._incorrect_taxon_data['Error Line'])),
             'Wrong Taxon': self._incorrect_taxon_data['Wrong Taxon'],
             'Options': self._incorrect_taxon_data['Options'],
-            'Alternative1': Alternatives1,
-            'Alternative2': Alternatives2
+            'Alternative1': Alternatives1,  # REDO
+            'Alternative2': Alternatives2  # REDO
             })
 
         # print(self._df_to_correct)
         try:
-            self._normalized_df_name = f'{self._spreadsheet[:-4]}_por_corrigir.xlsx'
-            self._df_to_correct.to_excel(self._normalized_df_name)
+            self._checked_df_name = f'TO_CORRECT_{self._name_original_spreadsheet}.xlsx'
+            self._df_to_correct.to_excel('UPLOAD_FOLDER/' + self._checked_df_name)
         except Exception as e:
             print('Error creating corrected spreadsheet: ', e)
 
@@ -116,6 +121,6 @@ class Pytaxon:
         self._corrected_df.loc[self._incorrect_taxon_data['Error Line'], self._species_column] = corrections[2].values
 
         try:
-            self._corrected_df.to_excel(f'{self._spreadsheet[:-4]}_corrigido.xlsx')
+            self._corrected_df.to_excel(f'{self._path_to_original_spreadsheet[:-4]}_corrigido.xlsx')
         except Exception as e:
             print('Error to update original spreadsheet: ', e)

@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
-    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </head>
 <body>
     <form action="/process" method="POST" enctype="multipart/form-data">
-        <div id="drop_zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
-            <input type="file" name="file">
-        </div>
-        <button type="submit" formaction="/normalize_taxonomies">Normalize Taxonomies</button>
-        <button type="submit" formaction="/normalize_lineage">Normalize Lineage</button>
+        <div id="drop-area"></div>
+        <input type="file" name="file" id="file-input" accept=".xlsx, .xls, .csv">
+        <br><br>
+        <button type="submit" formaction="/check_taxonomies">Check Taxonomies</button>
+        <button type="submit" formaction="/check_lineage">Check Lineage</button>
     </form>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </body>
 </html>
