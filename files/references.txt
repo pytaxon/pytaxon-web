@@ -1,0 +1,13 @@
+BOYLE, Brad et al. The taxonomic name resolution service: an online tool for automated standardization of plant names. BMC bioinformatics, v. 14, p. 1-15, 2013.
+
+CULLEY, Theresa M. Why vouchers matter in botanical research. Applications in Plant Sciences, v. 1, n. 11, p. 1300076, 2013.
+
+MEYER, Carsten; WEIGELT, Patrick; KREFT, Holger. Multidimensional biases, gaps and uncertainties in global plant occurrence information. Ecology letters, v. 19, n. 8, p. 992-1006, 2016.
+
+PATTERSON, David J. et al. Names are key to the big new biology. Trends in ecology & evolution, v. 25, n. 12, p. 686-691, 2010.
+
+TYRRELL, Christopher D. A method to implement continuous characters in digital identification keys that estimates the probability of an annotation. Applications in Plant Sciences, v. 7, n. 5, p. e01247, 2019.
+
+TURNEY, Shaun et al. Non-repeatable science: assessing the frequency of voucher specimen deposition reveals that most arthropod research cannot be verified. PeerJ, v. 3, p. e1168, 2015.
+
+ZERMOGLIO, Paula F.; GURALNICK, Robert P.; WIECZOREK, John R. A standardized reference data set for vertebrate taxon name resolution. PLoS One, v. 11, n. 1, p. e0146894, 2016.
